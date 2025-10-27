@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import './BMICalculator.css'
 function BMICalculator() {
     const [weight , setWeight] = useState('') 
     const [height , setHeight] = useState('') 
@@ -12,18 +13,35 @@ function BMICalculator() {
             return ;
         }
 
-        const 
+        const heightInMeters = parseFloat(height) / 100 ;
+        const bmiValue = (parseFloat(weight)/(heightInMeters*heightInMeters)).toFixed(2) ;
+        setBmi(bmiValue) ;
+
+        let bmiStatus = '' ;
+        if(bmiValue < 18.5) {
+            bmiStatus = 'Underweight' 
+        }
+        else if (bmiValue < 24.9) {
+            bmiStatus = 'Normal Weight' ;
+        }
+        else if (bmiValue < 29.9) {
+            bmiStatus = 'Overweight' ;
+        }
+        else {
+            bmiStatus = 'Obesity' ;
+        }
+        setStatus(bmiStatus) ; 
     }
   return (
-    <div>
+    <div className='container'>
         <h1>BMI Calculator</h1>
-        <div>
+        <div className='input-group'>
             <label> 
                 Weight (kg) :
                 <input type="number" value={weight} placeholder='Enter your weight' onChange={(event)=>setWeight(event.target.value)} />
             </label>
         </div>
-        <div>
+        <div className='input-group'>
             <label> 
                 Height (cm) :
                 <input type="number" value={height} placeholder='Enter your height' onChange={(event)=>setHeight(event.target.value)} />
@@ -32,7 +50,7 @@ function BMICalculator() {
         <button onClick={calculateBMI}>Calculate</button> 
         {
             bmi && ( 
-                <div>
+                <div className='result'>
                     <h3>Your bmi : {bmi}</h3>
                     <h3>Your status : {status}</h3>
                 </div>
