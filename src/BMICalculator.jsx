@@ -51,8 +51,8 @@ function BMICalculator() {
         {
             bmi && ( 
                 <div className='result'>
-                    <h3>Your bmi : {bmi}</h3>
-                    <h3>Your status : {status}</h3>
+                    <h3>Your BMI : {bmi}</h3>
+                    <h3>Status : {status}</h3>
                 </div>
             )
         }
