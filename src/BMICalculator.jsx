@@ -9,7 +9,10 @@ function BMICalculator() {
     const calculateBMI = () => {
         if(!weight || !height) {
             alert('Please enter both height and weight')
+            return ;
         }
+
+        const 
     }
   return (
     <div>
@@ -23,9 +26,18 @@ function BMICalculator() {
         <div>
             <label> 
                 Height (cm) :
-                <input type="number" value={height} placeholder='Enter your height' />
+                <input type="number" value={height} placeholder='Enter your height' onChange={(event)=>setHeight(event.target.value)} />
             </label>
         </div>
+        <button onClick={calculateBMI}>Calculate</button> 
+        {
+            bmi && ( 
+                <div>
+                    <h3>Your bmi : {bmi}</h3>
+                    <h3>Your status : {status}</h3>
+                </div>
+            )
+        }
     </div>
   )
 }
